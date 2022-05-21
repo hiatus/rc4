@@ -16,3 +16,5 @@ $(BINDIR):
 clean:
 	@echo [rm] $(BINDIR)
 	@rm -rf $(BINDIR) 2> /dev/null || true
+
+.PHONY: clean
