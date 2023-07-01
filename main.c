@@ -20,6 +20,7 @@ struct rc4_opts {
 	FILE *in;
 };
 
+
 const char banner[] =
 "rc4 [options] [file]?\n"
 "	Generate an RC4 byte stream and XOR it with [file] or stdin\n\n"
@@ -30,6 +31,7 @@ const char banner[] =
 "	-K [path]  read RC4 key from a file at [path]\n"
 "	-s [int]   generate [int] stream bytes (no XOR, input ignored)\n"
 "	-S [int]   skip the first [int] stream bytes\n";
+
 
 static uint8_t *_load_file(const char *path, size_t *size)
 {
@@ -192,7 +194,7 @@ int main(int argc, char **argv)
                                 break;
 
 			case 's':
-				if (! (opts.stream = strtoul(optarg, NULL, 16))) {
+				if (! (opts.stream = strtoul(optarg, NULL, 10))) {
 					fputs("[err] Invalid stream length\n", stderr);
 					goto cleanup;
 				}
@@ -200,7 +202,7 @@ int main(int argc, char **argv)
 				break;
 
 			case 'S':
-				if (! (opts.skip = strtoul(optarg, NULL, 16))) {
+				if (! (opts.skip = strtoul(optarg, NULL, 10))) {
 					fputs("[err] Invalid skip size\n", stderr);
 					goto cleanup;
 				}
